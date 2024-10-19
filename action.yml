@@ -1,18 +1,32 @@
-name: 'The name of your action here'
-description: 'Provide a description here'
-author: 'Your name or organization here'
+name: 'Kiosk Pro version file'
+description: 'Create a version file for the Kiosk Pro app'
+author: 'Eric Londaits for Imaginary gGmbH'
+
+branding:
+  icon: 'file-text'
+  color: 'orange'
 
 # Define your inputs here.
 inputs:
-  milliseconds:
-    description: 'Your input description here'
+  filename:
+    description: 'Filename of the version file to create.'
+    required: false
+    default: 'kiosk-pro-version.xml'
+  version:
+    description: 'Version number (must be an integer number).'
     required: true
-    default: '1000'
+  zip:
+    description: 'Filename or full URL to the .zip file containing the files corresponding to the version.'
+    required: true
+  clear-previous-content:
+    description: 'Set to "true" to remove existing files from the Kiosk App before installing the new version.'
+    required: false
+    default: 'false'
 
 # Define your outputs here.
 outputs:
-  time:
-    description: 'Your output description here'
+  filepath:
+    description: 'Path to the version file created.'
 
 runs:
   using: node20

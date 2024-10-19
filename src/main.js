@@ -1,5 +1,9 @@
+// noinspection ExceptionCaughtLocallyJS
+
+const fs = require('fs').promises
+const path = require('path')
 const core = require('@actions/core')
-const { wait } = require('./wait')
+const { buildVersionXml } = require('./lib/build-version-xml')
 
 /**
  * The main function for the action.
@@ -7,18 +11,25 @@ const { wait } = require('./wait')
  */
 async function run() {
   try {
-    const ms = core.getInput('milliseconds', { required: true })
+    const filename = core.getInput('filename', { required: false })
+    const version = core.getInput('version', { required: true })
+    const zip = core.getInput('zip', { required: true })
+    const clearPreviousContent = core.getInput('clear-previous-content', {
+      required: false
+    })
 
-    // Debug logs are only output if the `ACTIONS_STEP_DEBUG` secret is true
-    core.debug(`Waiting ${ms} milliseconds ...`)
+    const xml = buildVersionXml({
+      version,
+      zip,
+      clearPreviousContent
+    })
 
-    // Log the current timestamp, wait, then log the new timestamp
-    core.debug(new Date().toTimeString())
-    await wait(parseInt(ms, 10))
-    core.debug(new Date().toTimeString())
+    const outFilePath = path.resolve(process.cwd(), filename)
+    core.debug(`Writing to file: ${outFilePath}`)
+    await fs.writeFile(outFilePath, xml)
+    core.debug('File written successfully')
 
-    // Set outputs for other workflow steps to use
-    core.setOutput('time', new Date().toTimeString())
+    core.setOutput('filepath', outFilePath)
   } catch (error) {
     // Fail the workflow run if an error occurs
     core.setFailed(error.message)

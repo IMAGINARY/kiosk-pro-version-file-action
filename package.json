@@ -1,16 +1,16 @@
 {
-  "name": "javascript-action",
-  "description": "GitHub Actions JavaScript Template",
+  "name": "kiosk-pro-version-file-action",
+  "description": "GitHub Action (JS) for building a Kiosk Pro version file",
   "version": "0.0.0",
-  "author": "",
+  "author": "Eric Londaits <eric.londaits@imaginary.org>",
   "private": true,
-  "homepage": "https://github.com/actions/javascript-action#readme",
+  "homepage": "https://github.com/IMAGINARY/kiosk-pro-version-file-action#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/actions/javascript-action.git"
+    "url": "git+https://github.com/IMAGINARY/kiosk-pro-version-file-action"
   },
   "bugs": {
-    "url": "https://github.com/actions/javascript-action/issues"
+    "url": "https://github.com/IMAGINARY/kiosk-pro-version-file-action/issues"
   },
   "keywords": [
     "GitHub",
@@ -64,7 +64,8 @@
     ]
   },
   "dependencies": {
-    "@actions/core": "^1.10.1"
+    "@actions/core": "^1.10.1",
+    "xmlbuilder": "^15.1.1"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
