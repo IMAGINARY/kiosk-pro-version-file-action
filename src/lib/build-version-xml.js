@@ -1,4 +1,4 @@
-const builder = require("xmlbuilder");
+const builder = require('xmlbuilder')
 
 /**
  * Builds the version.xml file content.
@@ -14,11 +14,7 @@ const builder = require("xmlbuilder");
  * @return {string}
  */
 function buildVersionXml(props) {
-  const {
-    version,
-    zip,
-    clearPreviousContent
-  } = props
+  const { version, zip, clearPreviousContent } = props
 
   // Validate that all arguments are strings
   const stringProps = ['version', 'zip', 'clearPreviousContent']
@@ -71,4 +67,3 @@ function buildVersionXml(props) {
 module.exports = {
   buildVersionXml
 }
-

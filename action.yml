@@ -16,10 +16,14 @@ inputs:
     description: 'Version number (must be an integer number).'
     required: true
   zip:
-    description: 'Filename or full URL to the .zip file containing the files corresponding to the version.'
+    description:
+      'Filename or full URL to the .zip file containing the files corresponding
+      to the version.'
     required: true
   clear-previous-content:
-    description: 'Set to "true" to remove existing files from the Kiosk App before installing the new version.'
+    description:
+      'Set to "true" to remove existing files from the Kiosk App before
+      installing the new version.'
     required: false
     default: 'false'
 
