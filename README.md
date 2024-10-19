@@ -63,4 +63,4 @@ GitHub. Published under the [MIT License](LICENSE).
 ## Credits
 
 Created by [Eric Londaits](https://github.com/elondaits) for
-[ Imaginary gGmbH](https://github.com/IMAGINARY/).
+[Imaginary gGmbH](https://github.com/IMAGINARY/).
