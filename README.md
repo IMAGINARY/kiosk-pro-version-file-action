@@ -8,6 +8,9 @@ An action that creates a
 for remote updating of local files in the
 [Kiosk Pro](https://www.kioskgroup.com/pages/kiosk-pro-software) app.
 
+The authors of this action are not affiliated with Kiosk Pro or Kiosk Group in
+any way.
+
 ## Inputs
 
 ### `version`
@@ -48,10 +51,27 @@ The full path to the version file created.
 
 ## Example usage
 
-Coming soon.
-
 ```yaml
+- name: 'Generate build number'
+  id: generate_build_number
+  uses: onyxmueller/build-tag-number@4a0c81c9af350d967032d49204c83c38e6b0c8e4
+  with:
+    token: ${{secrets.github_token}}
 
+- name: 'Create Kiosk Pro version file'
+  id: create_kiosk_pro_version_file
+  uses: IMAGINARY/kiosk-pro-version-file-action@1f8f5671ccc7617998e5468aff5e89854bf10e3e
+  with:
+    version: ${{ steps.generate_build_number.outputs.build_number }}
+    zip: ${{ env.RELEASE_ZIP_FILENAME }}
+    clear-previous-content: 'true'
+
+- name: Create the release
+  uses: softprops/action-gh-release@4634c16e79c963813287e889244c50009e7f0981
+  with:
+    files: |
+      ${{ env.RELEASE_ZIP_FILENAME }}
+      ${{ steps.create_kiosk_pro_version_file.outputs.filepath }}
 ```
 
 ## License
